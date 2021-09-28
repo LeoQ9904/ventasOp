@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return 'Listado de productos';
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return 'formulario para la creacion de producto';
     }
 
     /**
@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //logica para la creacion del producto
     }
 
     /**
@@ -46,7 +46,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        //detalles del producto
     }
 
     /**
@@ -57,7 +57,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return 'formulario para la edición del producto';
     }
 
     /**
@@ -69,7 +69,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        //logica que se encarga del update del producto
     }
 
     /**
@@ -80,6 +80,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        //loguica que se encarga de eliminar el producto
     }
 }
