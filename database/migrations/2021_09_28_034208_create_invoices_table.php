@@ -20,6 +20,9 @@ class CreateInvoicesTable extends Migration
             $table->integer('cnt')->unsigned();
             $table->float('total')->unsigned();
             $table->timestamps();
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
