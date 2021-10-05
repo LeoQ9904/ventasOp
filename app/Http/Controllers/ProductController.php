@@ -14,7 +14,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return 'Listado de productos';
+
+        return view('product.index')->
+        with([
+            'products'=>Product::all()
+        ]);
     }
 
     /**

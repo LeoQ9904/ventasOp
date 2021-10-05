@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-
+Route::resource('products', 'ProductController');
+Route::resource('orders', 'OrderController');
+Route::resource('invoices', 'InvoiceController');
+Route::resource('customers', 'CustomerController');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

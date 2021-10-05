@@ -8,7 +8,12 @@ use App\Models\Invoice;
 class Order extends Model
 {
     use HasFactory;
-    public function invoices(){
-        return $this->hasMany(Invoice::class);
+    protected $fillable = [
+        'status',
+        'total',
+        'customer_id'
+    ];
+    public function invoices(){        
+        return $this->hasMany('App\Models\Invoice');
     }
 }

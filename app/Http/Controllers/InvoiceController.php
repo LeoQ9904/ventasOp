@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -35,7 +37,15 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = Product::find(request()->product_id);
+        $total = $producto->price*request()->cnt;
+        Invoice::create([
+            'order_id'=>request()->order,            
+            'product_id'=>request()->product_id,
+            'cnt'=>request()->cnt,
+            'total'=>$total
+        ]); 
+        return redirect()->route('orders.create');
     }
 
     /**
