@@ -17,7 +17,10 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('descript');
-            $table->float('price')->unsigned()->nullable();
+            $table->float('price')->unsigned()->default(0);
+            $table->string('reference')->unique();
+            $table->string('category');
+            $table->integer('iva')->default(19);
             $table->timestamps();
         });
     }

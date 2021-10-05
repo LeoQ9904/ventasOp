@@ -14,12 +14,16 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('status')->default(0);
-            $table->BigInteger('customer_id')->unsigned();
+            $table->id();            
+            $table->BigInteger('product_id')->unsigned();
+            $table->BigInteger('invoice_id')->unsigned();
             $table->float('total')->unsigned()->default(0);
-            $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->float('total_descu')->unsigned()->default(0);
+            $table->integer('cnt')->unsigned();
+            $table->integer('descu')->unsigned(); 
+
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('invoice_id')->references('id')->on('invoices');
         });
     }
 
