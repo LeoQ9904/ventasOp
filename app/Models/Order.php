@@ -9,11 +9,11 @@ class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'status',
+        'product_id',
+        'invoice_id',
+        'cnt',
         'total',
-        'customer_id'
-    ];
-    public function invoices(){        
-        return $this->hasMany('App\Models\Invoice');
-    }
+        'descu',
+        'total_descu'
+    ];    
 }

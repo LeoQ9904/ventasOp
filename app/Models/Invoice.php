@@ -11,18 +11,15 @@ class Invoice extends Model
 {
     use HasFactory;
     protected $fillable = [
-            'order_id',            
-            'product_id',
+            'n-invoice',                        
+            'customer_id',
+            'seller_id',
+            'company_id',
+            'status',
+            'total_iva',
+            'total_dec',
             'cnt',
             'total'
     ];
-    public function customer(){
-        return $this->belongsTo(Customer::class,'invoices');
-    }
-    public function order(){
-        return $this->belongsTo(Order::class,'invoices');
-    }
-    public function product(){
-        return $this->belongsTo(Product::class,'invoices');
-    }
+    
 }

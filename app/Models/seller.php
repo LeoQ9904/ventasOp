@@ -4,17 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Invoice;
 
-class Customer extends Model
+class seller extends Model
 {
     use HasFactory;
-    protected $fillable = [
+    protected $fillable=[
         'name',
         'email',
         'type_id',
         'id_legal',
         'direction'
-    ];    
+    ];
 }

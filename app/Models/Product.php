@@ -13,8 +13,9 @@ class Product extends Model
         'name',
         'descript',
         'price',
+        'reference',
+        'category',
+        'iva',
     ];
-    public function invoices(){
-        return $this->hasMany(Invoice::class);
-    }
+    
 }
