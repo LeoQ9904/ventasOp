@@ -22,8 +22,11 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-        'name'=>$this->faker->sentence(2),
-        'email'=>$this->faker->randomElement(['cliente@gmail.com','cleintesasazo@gmail.com','customer@gamil.com']),
+        'name'=>$this->faker->sentence(3),
+        'email'=>$this->faker->unique()->safeEmail(),
+        'type_id'=>$this->faker->numberBetween(1,4),        
+        'id_legal'=>$this->faker->unique()->numberBetween(9000000,9999999),
+        'direction'=>$this->faker->sentence(1),
         ];
     }
 }

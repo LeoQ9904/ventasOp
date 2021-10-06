@@ -21,8 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->BigInteger('company_id')->unsigned();            
             $table->string('status');
             $table->float('total_iva')->unsigned();
-            $table->float('total_dec')->unsigned();
-            $table->integer('cnt')->unsigned();
+            $table->float('total_dec')->unsigned();            
             $table->float('total')->unsigned();  
             
             

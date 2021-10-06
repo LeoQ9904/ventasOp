@@ -20,7 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('direction');
             $table->string('email');
             $table->string('descript');
-
+            $table->timestamps();
         });
     }
 

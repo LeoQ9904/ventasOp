@@ -17,8 +17,7 @@ class Invoice extends Model
             'company_id',
             'status',
             'total_iva',
-            'total_dec',
-            'cnt',
+            'total_dec',            
             'total'
     ];
     

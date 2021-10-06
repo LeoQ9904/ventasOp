@@ -24,7 +24,9 @@ class ProductFactory extends Factory
         return [
             'name'=>$this->faker->sentence(3),
             'descript'=>$this->faker->sentence(10,20),
-            'price'=>$this->faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100)
+            'price'=>$this->faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
+            'reference'=>$this->faker->unique()->numberBetween(0000,9999),
+            'category'=>$this->faker->randomElement(['categoria 1','categoria 2','categoria 3','categoria 4']),            
         ];
     }
 }
