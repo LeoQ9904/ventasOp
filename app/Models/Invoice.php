@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Invoice extends Model
 {
     use HasFactory;
@@ -20,5 +22,8 @@ class Invoice extends Model
             'total_dec',            
             'total'
     ];
+    public function productos(){
+        return $this->hasMany(Order::class);
+    }
     
 }
