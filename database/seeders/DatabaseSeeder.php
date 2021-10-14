@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         Customer::factory(20)->create();
         seller::factory(4)->create();
         company::factory()->create();
-        $cantidadInvoices=40;//cantidad de facturas que se desee crear. 
+        $cantidadInvoices=50;//cantidad de facturas que se desee crear. 
         $i=0;
         while($i<$cantidadInvoices){
             $invoice = Invoice::factory()->create();

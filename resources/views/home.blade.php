@@ -8,7 +8,7 @@
                 <div class="card-header">Acciones a realizar</div>
 
                 <div class="card-body text-center">
-                   <a href="{{route('orders.create')}}" class="btn btn-primary">Nueva Orden</a>
+                   <a href="{{route('invoices.create')}}" class="btn btn-primary">Nueva Orden</a>
                    <a href="{{route('products.create')}}" class="btn btn-primary">Nuevo Producto</a>
                    <a href="{{route('products.index')}}" class="btn btn-primary">Listado de Productos</a>
                    <a href="{{route('customers.create')}}" class="btn btn-primary">Nuevo Cliente</a>

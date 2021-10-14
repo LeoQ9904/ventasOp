@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -26,16 +27,14 @@ class OrderController extends Controller
      */
     public function create()
     {   
-        $orden= Order::latest()->first();
-        //dd($orden);
+        $orden= Invoice::latest()->first();        
         if(!$orden){
-            $orden = Order::create([
-                'customer_id'=>1,
+            $orden = Invoice::create([                
             ]);
         }else{
             if($orden->status==1){
                 $orden = Order::create([
-                    'customer_id'=>1,
+                    
                 ]);
             }   
         }
@@ -58,7 +57,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //logica para la creacion del producto
+        
     }
 
     /**

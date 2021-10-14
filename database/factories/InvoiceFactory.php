@@ -25,7 +25,7 @@ class InvoiceFactory extends Factory
     public function definition()
     {         
         return [
-            'n_invoice'=>$this->faker->unique()->numberBetween(100,9999),                        
+            'n_invoice'=>$this->faker->unique()->numberBetween(1,50),                        
             'customer_id'=>Customer::all()->random()->id,
             'seller_id'=>seller::all()->random()->id,
             'company_id'=>company::all()->random()->id,

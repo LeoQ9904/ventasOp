@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Invoice;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return 'leo';
+        return view('customer.create');
     }
 
     /**
@@ -34,21 +35,13 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $tipo, $id)
-    {           
-        $customer = Customer::created(
+    public function store(Request $request)
+    {                   
+        // se pide $tipo para saber si se le agrega a una factura de una vez o no. $idf es el id de la factura para asociarlo
+        $customer = Customer::create(
             request()->all()
-        );
-        dd($customer);
-        if($tipo=='order'){
-            $orden = Order::findOrFail($id);        
-            $orden->update(
-                [
-                    'customer_id'=> 2,
-                ]
-            );        
-        }
-        return redirect()->route('orders.create');
+        );                        
+        return redirect()->route('invoices.create');
     }
 
     /**

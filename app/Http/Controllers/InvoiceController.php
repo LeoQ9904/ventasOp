@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -25,8 +26,23 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $invoice=0;
+        $numFc=Invoice::orderby('n_invoice','DESC')->first();  //toma de ultima factura creada
+
+        if($numFc->status!='pendiente'){
+            //creacion de factura tomando la ultima factura e incrementandola a 1           
+            $invoice=Invoice::create(['n_invoice' => $numFc->n_invoice+1]);
+        }else{
+            $invoice=Invoice::where('n_invoice',$numFc->n_invoice)->get();
+        }//evitar crear invoices cuando estan pendientes y se pueda reutilizar
+        $customer=Customer::where('id',$invoice->customer_id)->get();
+        $order_invoices=[];
+        return view('invoices.create')->with([
+            'invoice'=>$invoice,
+            'order_invoices'=>$order_invoices,
+            'customer'=>$customer
+        ]);
     }
 
     /**
@@ -79,7 +95,12 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $id_customer=Customer::where('id_legal',request()->id_legal);
+        $invoice->update([
+            'customer_id'=>$id_customer,
+        ]);
+        
+        return redirect()->route('invoices.create');
     }
 
     /**
