@@ -42,7 +42,7 @@ class InvoiceController extends Controller
         ,ventasop.orders.cnt as cnt ,ventasop.orders.total as total
         FROM ventasop.orders,ventasop.products 
         where ventasop.orders.product_id=ventasop.products.id 
-        and ventasop.orders.invoice_id=62;
+        and ventasop.orders.invoice_id=$invoice->id;
         ");                                    
         return view('invoices.create')->with([
             'invoice'=>$invoice,
@@ -101,9 +101,9 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        $id_customer=Customer::where('id_legal',request()->id_legal);
+        $id_customer=Customer::firstWhere('id_legal',request()->id_legal);
         $invoice->update([
-            'customer_id'=>$id_customer,
+            'customer_id'=>$id_customer->id,
         ]);
         
         return redirect()->route('invoices.create');

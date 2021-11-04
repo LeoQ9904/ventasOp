@@ -10002,3 +10002,22 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.row{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.cartaboton{
+  background-color: white;
+  height: 8rem;
+  padding: 0.5rem;   
+}
+.cartaboton:hover{
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.modal-backdrop.show {
+  opacity: 10 !important;  
+}
+.modal-backdrop{  
+  background: transparent !important;
+}

@@ -99,11 +99,12 @@ class OrderController extends Controller
      */
     public function update($orden)
     {   
-        $orden = Order::findOrFail($orden);        
-        $orden->update(
-        request()->all()            
-        );        
-        return redirect()->route('orders.create');
+        $orden = Invoice::findOrFail($orden);        
+        $orden->update([
+            'status'=>request()->status,
+            'total'=>request()->total
+        ]);
+        return redirect()->route('invoices.create');
     }
 
     /**
