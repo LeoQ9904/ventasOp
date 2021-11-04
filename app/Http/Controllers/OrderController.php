@@ -57,7 +57,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $producto = Product::find(request()->product_id);
+        $total = $producto->price*request()->cnt;        
+        Order::create([
+            'invoice_id'=>request()->invoice_id,            
+            'product_id'=>request()->product_id,
+            'cnt'=>request()->cnt,
+            'total'=>$total
+        ]); 
+        return redirect()->route('invoices.create');
     }
 
     /**

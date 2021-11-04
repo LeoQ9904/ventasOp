@@ -3,11 +3,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-8 bg-white shadow p-4">                    
-            <div class="col-12 border-bottom mb-3">
+            <div class="col-12 border-bottom mb-1">
                 <h2>Orden Número: {{$invoice->n_invoice}}</h2>
                 <small>Creada el día: {{$invoice->created_at}}</small>
             </div>  
-            <div class="col-12 p-1 border-bottom mb-3">
+            <div class="col-12 p-1 border-bottom mb-1">
                 @if (!$invoice->customer_id)
                 <h5>Añadir cliente</h5>
                 <form action="{{route('invoices.update',['invoice'=>$invoice->id])}}" method="post" class="col-12 row align-items-end">
@@ -22,15 +22,16 @@
                     </div>                      
                 </form>
                 @else
-                <h4 class="m-3">{{$customer}}}</h4>
+                <h4 class="m-3"><small>Cliente: </small> {{$customer->name}}</h4>
                 @endif 
 
             </div>         
-            <div class="col-12 p-1">                
-                <form action="{{route('orders.store',['tipo'=>'invoice','idf'=>53])}}" method="post" class="col-12 row align-items-end">
+            <div class="col-12 pt-3">                
+                <form action="{{route('orders.store')}}" method="post" class="col-12 row align-items-end">
                     @csrf
                     <div class="form-group">                        
-                        <input type="hidden" class="form-control" name="order" id="order" value="{{$invoice->id}}">
+                        <input type="hidden" class="form-control"
+                         name="invoice_id" id="invoice_id" value="{{$invoice->id}}">
                     </div>
                     <div class="form-group col-8" class=" p-1">                        
                     <input type="text"

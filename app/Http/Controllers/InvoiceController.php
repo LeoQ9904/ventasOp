@@ -30,14 +30,20 @@ class InvoiceController extends Controller
         $invoice=0;
         $numFc=Invoice::orderby('n_invoice','DESC')->first();  //toma de ultima factura creada
 
-        if($numFc->status!='pendiente'){
+        if($numFc->status!='Pendiente'){
             //creacion de factura tomando la ultima factura e incrementandola a 1           
-            $invoice=Invoice::create(['n_invoice' => $numFc->n_invoice+1]);
-        }else{
-            $invoice=Invoice::where('n_invoice',$numFc->n_invoice)->get();
-        }//evitar crear invoices cuando estan pendientes y se pueda reutilizar
-        $customer=Customer::where('id',$invoice->customer_id)->get();
-        $order_invoices=[];
+            Invoice::create(['n_invoice' => $numFc->n_invoice+1]);
+        }
+        $invoice=Invoice::orderby('n_invoice','DESC')->first();        
+        $customer=Customer::find($invoice->customer_id);
+        $order_invoices=
+        DB::select(
+        "SELECT ventasop.products.id as product_id,ventasop.products.name as name,ventasop.products.price as price
+        ,ventasop.orders.cnt as cnt ,ventasop.orders.total as total
+        FROM ventasop.orders,ventasop.products 
+        where ventasop.orders.product_id=ventasop.products.id 
+        and ventasop.orders.invoice_id=62;
+        ");                                    
         return view('invoices.create')->with([
             'invoice'=>$invoice,
             'order_invoices'=>$order_invoices,
