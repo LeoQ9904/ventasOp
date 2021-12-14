@@ -21,8 +21,11 @@ class Invoice extends Model
             'total_iva',
             'total_dec',            
             'total'
-    ];
-    public function productos(){
+    ];    
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+    }
+    public function order(){
         return $this->hasMany(Order::class);
     }
     

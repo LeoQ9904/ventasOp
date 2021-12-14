@@ -57,12 +57,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $producto = Product::find(request()->product_id);
-        $total = $producto->price*request()->cnt;        
+        $producto=Product::where('reference','=',request()->product_reference)->first();        
+        $product_id=$producto->id;
+        $total = $producto->price*request()->cnt;                
+        if(request()->dec==0){
+            $total_desc=0;    
+        }else{
+            $total_desc=($total*request()->dec)/100;  
+            $total=$total-$total_desc;      
+        }
         Order::create([
             'invoice_id'=>request()->invoice_id,            
-            'product_id'=>request()->product_id,
+            'product_id'=>$product_id,
             'cnt'=>request()->cnt,
+            'descu'=>request()->dec,
+            'total_descu'=>$total_desc,
             'total'=>$total
         ]); 
         return redirect()->route('invoices.create');
@@ -102,7 +111,8 @@ class OrderController extends Controller
         $orden = Invoice::findOrFail($orden);        
         $orden->update([
             'status'=>request()->status,
-            'total'=>request()->total
+            'total'=>request()->total,
+            'total_dec'=>request()->total_dec
         ]);
         return redirect()->route('invoices.create');
     }

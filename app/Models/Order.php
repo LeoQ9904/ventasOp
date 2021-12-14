@@ -15,5 +15,11 @@ class Order extends Model
         'total',
         'descu',
         'total_descu'
-    ];    
+    ]; 
+    public function producto(){
+        return $this->belongsTo(Product::class,'product_id');
+    }
+    public function invoice(){
+        return $this->belongsTo(Invoice::class);
+    }   
 }

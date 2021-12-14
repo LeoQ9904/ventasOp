@@ -16,5 +16,8 @@ class Customer extends Model
         'type_id',
         'id_legal',
         'direction'
-    ];    
+    ];
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }    
 }

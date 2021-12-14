@@ -40,6 +40,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //logica para la creacion del producto
+        $product = Product::create(            
+            request()->all()            
+        );
+        return redirect()->route('invoices.create');
     }
 
     /**

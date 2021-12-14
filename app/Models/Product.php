@@ -17,5 +17,7 @@ class Product extends Model
         'category',
         'iva',
     ];
-    
+    public function orders(){
+        return $this->belongsTo(Order::class);
+    }
 }
