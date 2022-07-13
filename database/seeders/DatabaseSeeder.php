@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         Customer::factory(20)->create();
         seller::factory(4)->create();
         company::factory()->create();
-        $cantidadInvoices=50;//cantidad de facturas que se desee crear. 
+        $cantidadInvoices=50;//cantidad de facturas que se desee crear.
         $i=0;
         while($i<$cantidadInvoices){
             $invoice = Invoice::factory()->create();
@@ -32,16 +32,18 @@ class DatabaseSeeder extends Seeder
             while($e<$cntp){
                 Order::factory()->neworder($invoice->id)->create();
                 $e=$e+1;
-            } 
-           
+            }
+
             $invoiceProducts=$invoice->productos;
-            $total_g=$invoiceProducts->sum('total');
+            // $total_g=$invoiceProducts->sum('total');
+            $total_g=10;
             $total_iva=$total_g*19/100;
-            $total_descu=$invoiceProducts->sum('total_descu');
-            $invoice->update([                
+            // $total_descu=$invoiceProducts->sum('total_descu');
+            $total_descu=2000;
+            $invoice->update([
                 'total_iva'=>$total_iva,
                 'total_dec'=>$total_descu,
-                'total'=>$total_g,                
+                'total'=>$total_g,
             ]);
             $i=$i+1;
         }

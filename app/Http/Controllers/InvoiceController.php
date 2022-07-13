@@ -26,19 +26,19 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        $invoice=0;        
+    {
+        $invoice=0;
         $numFc=Invoice::orderby('n_invoice','DESC')->first();  //toma de ultima factura creada
         //el siguiente if es para cuando no se tiene ninguna factura creada
-        if(is_null($numFc)){ 
+        if(is_null($numFc)){
             Invoice::create(['n_invoice' => 1]);
             $numFc=Invoice::orderby('n_invoice','DESC')->first();  //toma de ultima factura creada
         }
         if($numFc->status!='Pendiente'){
-                //creacion de factura tomando la ultima factura e incrementandola a 1           
+                //creacion de factura tomando la ultima factura e incrementandola a 1
                 Invoice::create(['n_invoice' => $numFc->n_invoice+1]);
         }
-        $invoice=Invoice::orderby('n_invoice','DESC')->first();        
+        $invoice=Invoice::orderby('n_invoice','DESC')->first();
         $customer=Customer::find($invoice->customer_id);
         $order_invoices=
         DB::select(
@@ -49,10 +49,10 @@ class InvoiceController extends Controller
         ventasop.orders.total as total,
         ventasop.orders.total_descu as total_descu,
         ventasop.orders.descu as descu
-        FROM ventasop.orders,ventasop.products 
-        where ventasop.orders.product_id=ventasop.products.id 
+        FROM ventasop.orders,ventasop.products
+        where ventasop.orders.product_id=ventasop.products.id
         and ventasop.orders.invoice_id=$invoice->id;
-        ");                                    
+        ");
         return view('invoices.create')->with([
             'invoice'=>$invoice,
             'order_invoices'=>$order_invoices,
@@ -74,11 +74,11 @@ class InvoiceController extends Controller
         $producto = Product::find(request()->product_id);
         $total = $producto->price*request()->cnt;
         Invoice::create([
-            'order_id'=>request()->order,            
+            'order_id'=>request()->order,
             'product_id'=>request()->product_id,
             'cnt'=>request()->cnt,
             'total'=>$total
-        ]); 
+        ]);
         return redirect()->route('orders.create');
     }
 
@@ -117,7 +117,7 @@ class InvoiceController extends Controller
         $invoice->update([
             'customer_id'=>$id_customer->id,
         ]);
-        
+
         return redirect()->route('invoices.create');
     }
 
